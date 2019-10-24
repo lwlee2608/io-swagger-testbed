@@ -22,52 +22,19 @@ paths:
           in: query
           required: false
           schema:
-            $ref: '#/components/schemas/Ipv4Addr'
+            $ref: 'common.yaml#/components/schemas/Ipv4Addr'
         - name: snssai
           in: query
           required: false
           schema:
-            $ref: '#/components/schemas/Snssai'
+            $ref: 'common.yaml#/components/schemas/Snssai'
         - name: plmnId
           in: query
           required: false
           content:
             application/json:
               schema:
-                $ref: '#/components/schemas/PlmnId'
+                $ref: 'common.yaml#/components/schemas/PlmnId'
       responses:
         '200':
           description: OK
-
-components:
-  schemas:
-    Ipv4Addr:
-      type: string
-    Mcc:
-      type: string
-      pattern: '^\d{3}$'
-    Mnc:
-      type: string
-      pattern: '^\d{2,3}$'
-    PlmnId:
-      type: object
-      properties:
-        mcc:
-          $ref: '#/components/schemas/Mcc'
-        mnc:
-          $ref: '#/components/schemas/Mnc'
-      required:
-        - mcc
-        - mnc
-    Snssai:
-      type: object
-      properties:
-        sst:
-          type: integer
-          minimum: 0
-          maximum: 255
-        sd:
-          type: string
-          pattern: '^[A-Fa-f0-9]{6}$'
-      required:
-        - sst
